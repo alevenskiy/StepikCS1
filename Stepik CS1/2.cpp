@@ -118,3 +118,31 @@ char* mygetline() {
 	str[size] = '\0';
 	return str;
 }
+
+
+int** transpose(const int* const* m, unsigned rows, unsigned cols) {
+	int** mm = new int* [cols];
+	mm[0] = new int[cols * rows];
+	for (unsigned i = 1; i != cols; i++)
+		mm[i] = mm[i - 1] + rows;
+
+	for (unsigned i = 0; i != cols; i++)
+		for (unsigned j = 0; j != rows; j++)
+			mm[i][j] = m[j][i];
+	return mm;
+}
+
+void swap_min(int* m[], unsigned rows, unsigned cols) {
+	int* min = m[0];
+	int minrow = 0;
+
+	for (unsigned i = 0; i != rows; i++)
+		for (unsigned j = 0; j != cols; j++)
+			if (*min > m[i][j]) {
+				minrow = i;
+				min = &m[i][j];
+			}
+	min = m[minrow]; // тк мин нам больше не нужен
+	m[minrow] = m[0];
+	m[0] = min;
+}

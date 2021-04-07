@@ -7,8 +7,6 @@ using namespace std;
 int main()
 {
     cout << "Hello, World!\n";
-    
-    char* hy = mygetline();
 
     return 0;
 }
